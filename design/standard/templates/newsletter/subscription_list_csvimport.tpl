@@ -376,7 +376,7 @@ list all blacklist items
                                                 {elseif $data_set.s_status|eq( '2' )}
                                                     <b>{'Updated'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
                                                 {elseif $data_set.s_status|eq( '0' )}
-                                                    <b>{'No change'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
+                                                    <b>{'Pending'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
                                                 {elseif $data_set.s_status|eq( 3 )}
                                                    <b>{'Removed by user'|i18n( 'cjw_newsletter/subscription/status' )}</b>
                                                 {elseif $data_set.s_status|eq( 4 )}
