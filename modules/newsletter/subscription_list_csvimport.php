@@ -454,7 +454,13 @@ else
                             // 2 - update
                             $createNewSubscription = 2;
                             $subscriptionObject = $existingSubscription;
-
+                            
+                            if ( $s_status == '4' )
+                            {
+                                $subscriptionObject->setAttribute( 'status', CjwNewsletterUser::STATUS_REMOVED_ADMIN );
+                            } else {
+                                $subscriptionObject->setAttribute( 'status', CjwNewsletterUser::STATUS_APPROVED );
+                            }
                             $subscriptionObject->setAttribute( 'status', CjwNewsletterSubscription::STATUS_APPROVED );
                             $subscriptionObject->setAttribute( 'import_id', $importId );
                             // set new remote_id
