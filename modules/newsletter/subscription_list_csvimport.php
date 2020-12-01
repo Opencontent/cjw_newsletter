@@ -381,12 +381,13 @@ else
                             $userObject->setAttribute( 'custom_data_text_3', $customDataText3 );
                         if ( $customDataText4 != '' )
                             $userObject->setAttribute( 'custom_data_text_4', $customDataText4 );
+
                         if ( $s_status == '4' )
                         {
-                            $userObject->setAttribute( 's_status', CjwNewsletterUser::STATUS_REMOVED_ADMIN);
+                            $userObject->setAttribute( 'status', CjwNewsletterUser::STATUS_REMOVED_ADMIN);
                         } else 
                         {
-                            $userObject->setAttribute( 's_status', CjwNewsletterUser::STATUS_CONFIRMED);
+                            $userObject->setAttribute( 'status', CjwNewsletterUser::STATUS_CONFIRMED);
                         }
 
                         $userObject->setAttribute( 'import_id', $importId );
@@ -457,11 +458,12 @@ else
                             
                             if ( $s_status == '4' )
                             {
-                                $subscriptionObject->setAttribute( 'status', CjwNewsletterUser::STATUS_REMOVED_ADMIN );
-                            } else {
-                                $subscriptionObject->setAttribute( 'status', CjwNewsletterUser::STATUS_APPROVED );
+                                $subscriptionObject->setAttribute( 'status', CjwNewsletterSubscription::STATUS_REMOVED_ADMIN );
                             }
-                            $subscriptionObject->setAttribute( 'status', CjwNewsletterSubscription::STATUS_APPROVED );
+                            else
+                            {
+                                $subscriptionObject->setAttribute( 'status', CjwNewsletterSubscription::STATUS_APPROVED );
+                            }
                             $subscriptionObject->setAttribute( 'import_id', $importId );
                             // set new remote_id
                             $subscriptionObject->setAttribute( 'remote_id', 'cjwnl:csvimport:'. CjwNewsletterUtils::generateUniqueMd5Hash( $newsletterUserId . $importId ) );
@@ -477,6 +479,12 @@ else
                                                  $newsletterUserId,
                                                  $outputFormatArray,
                                                  CjwNewsletterSubscription::STATUS_APPROVED );
+
+                        if ( $s_status == '4' )
+                        {
+                            $newListSubscription->setAttribute( 'status', CjwNewsletterSubscription::STATUS_REMOVED_ADMIN );
+                        }
+                        
                         $newListSubscription->setAttribute( 'import_id', $importId );
                         // set new remote_id
                         $newListSubscription->setAttribute( 'remote_id', 'cjwnl:csvimport:'. CjwNewsletterUtils::generateUniqueMd5Hash( $newsletterUserId . $importId ) );
