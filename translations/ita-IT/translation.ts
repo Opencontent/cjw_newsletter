@@ -1758,7 +1758,7 @@ Per modificare le tue impostazioni, clicca sul seguente link:
     <name>cjw_newsletter/send</name>
     <message>
         <source>Send Test Newsletter</source>
-        <translation>Invia newstetter di Test</translation>
+        <translation>Invia newsletter di Test</translation>
     </message>
     <message>
         <source>Send Test Newsletter at</source>
