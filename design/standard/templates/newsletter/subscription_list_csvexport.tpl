@@ -6,7 +6,7 @@
 
 <div class="newsletter newsletter-subscription_list_csvexport">
 
-<form enctype="multipart/form-data" name="subscription_csvexport" method="post" action={$base_uri|ezurl}>
+<form enctype="multipart/form-data" name="subscription_csvexport" method="post" action={if $status|ne('')}{concat($base_uri,'/(status)/',$status)|ezurl}{else}{$base_uri|ezurl}{/if}>
 
     <div class="context-block">
         {* DESIGN: Header START *}

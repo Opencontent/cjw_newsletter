@@ -285,6 +285,9 @@ list all blacklist items
                                         <th class="tight">
                                             {'Email ok'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}
                                         </th>
+                                        <th class='tight'>
+                                            {'Statut'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}
+                                        </th>
                                         <th class="tight">
                                             {'Nl user created'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}
                                         </th>
@@ -365,6 +368,23 @@ list all blacklist items
                                                     {'no'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}
                                                 {else}
                                                     {$email_ok|wash()}
+                                                {/if}
+                                            </td>
+                                            <td title="status {$user_status_old|wash()} -new: {$user_status_new|wash()}">
+                                                {if $data_set.s_status|eq( '1' )}
+                                                    <b>{'Created'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
+                                                {elseif $data_set.s_status|eq( '2' )}
+                                                    <b>{'Updated'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
+                                                {elseif $data_set.s_status|eq( '0' )}
+                                                    <b>{'Pending'|i18n( 'cjw_newsletter/subscription_list_csvimport' )}</b>
+                                                {elseif $data_set.s_status|eq( 3 )}
+                                                   <b>{'Removed by user'|i18n( 'cjw_newsletter/subscription/status' )}</b>
+                                                {elseif $data_set.s_status|eq( 4 )}
+                                                   <b>{'Removed by admin'|i18n( 'cjw_newsletter/subscription/status' )}</b>
+                                                {elseif $data_set.s_status|eq( 8 )}
+                                                   <b>{'Blacklisted'|i18n( 'cjw_newsletter/subscription/status' )</b>
+                                                {else}
+                                                    {$user_created|wash()}
                                                 {/if}
                                             </td>
                                             <td title="status old: {$user_status_old|wash()} -new: {$user_status_new|wash()}">

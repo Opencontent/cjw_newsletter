@@ -16,6 +16,8 @@ require_once( 'kernel/common/i18n.php' );
 include_once( 'kernel/common/template.php' );
 
 $module  = $Params['Module'];
+$Status = getStatusFromString($Params['Status']);
+
 $http    = eZHTTPTool::instance();
 $nodeId  = (int) $Params['NodeId'];
 
@@ -73,7 +75,7 @@ if ( $http->hasVariable( 'CsvDelimiter' ) && $http->variable( 'CsvDelimiter' ) !
  * CSV Preview
  */
 // preview for csv data export, fetch data with limit
-$arrPreviewCsvData = getDataForCsv( $listContentObjectId, 10, $module );
+$arrPreviewCsvData = getDataForCsv( $listContentObjectId, 10, $module, $Status );
 
 // create csv string for preview
 
@@ -110,7 +112,7 @@ elseif ( $http->hasPostVariable( 'ExportButton' ) )
      * Export
      */
     // fetch data
-    $arrCsvData = getDataForCsv( $listContentObjectId, 0, $module );
+    $arrCsvData = getDataForCsv( $listContentObjectId, 0, $module, $Status );
 
     if ( $arrCsvData !== FALSE )
     {
@@ -142,6 +144,7 @@ $viewParameters = array_merge( $viewParameters, $userParameters );
 
 $tpl = eZTemplate::factory();
 $tpl->setVariable( 'view_parameters', $viewParameters );
+$tpl->setVariable( 'status', getStatusFromInt($Status) );
 $tpl->setVariable( 'list_node', $listNode );
 $tpl->setVariable( 'csv_delimiter', $delimiter );
 $tpl->setVariable( 'arr_tables', $arrTables );
@@ -175,7 +178,7 @@ $Result['path'] =  array( array( 'url'  => 'newsletter/index',
  * @param integer $listContentObjectId
  * @return array with data
  */
-function getDataForCsv( $listContentObjectId, $limit = 0, $module = false )
+function getDataForCsv( $listContentObjectId, $limit = 0, $module = false, $Status = -1 )
 {
     if ( isset( $listContentObjectId ) )
     {
@@ -210,10 +213,15 @@ function getDataForCsv( $listContentObjectId, $limit = 0, $module = false )
                               s.output_format_array_string
 
                        FROM cjwnl_subscription s, cjwnl_user u
-                       WHERE s.list_contentobject_id=$listContentObjectId
-                       AND s.newsletter_user_id=u.id
-                       $qryLimit";
+                       WHERE s.list_contentobject_id=$listContentObjectId";
 
+        if($Status != -1)
+        {
+            $qryGetData .= " AND s.status=$Status";
+        }
+
+        $qryGetData .= " AND s.newsletter_user_id=u.id
+                       $qryLimit";
         // execute query
         $resQryGetData = $db->arrayQuery( $qryGetData );
 
@@ -232,6 +240,76 @@ function getDataForCsv( $listContentObjectId, $limit = 0, $module = false )
         else
         {
           return false;
+        }
+    }
+}
+
+/**
+ * get status code from string
+ *
+ * @param string
+ * @return int
+ */
+function getStatusFromString($Status)
+{
+    if(!empty($Status)) {
+        switch ($Status) {
+            case 'pending':
+                return CjwNewsletterSubscription::STATUS_PENDING;
+                break;
+            case 'confirmed':
+                return CjwNewsletterSubscription::STATUS_CONFIRMED;
+                break;
+            case 'approved':
+                return CjwNewsletterSubscription::STATUS_APPROVED;
+                break;
+            case 'bounced':
+                return CjwNewsletterSubscription::STATUS_BOUNCED_HARD;
+                break;
+            case 'removed':
+                return CjwNewsletterSubscription::STATUS_REMOVED_SELF;
+                break;
+            case 'blacklisted':
+                return CjwNewsletterSubscription::STATUS_BLACKLISTED;
+                break;
+            default:
+                return null;
+                break;
+        }
+    }
+}
+
+/**
+ * get string from status code
+ *
+ * @param integer
+ * @return string
+ */
+function getStatusFromInt($Status)
+{
+    if($Status>=0) {
+        switch ($Status) {
+            case CjwNewsletterSubscription::STATUS_PENDING:
+                return 'pending';
+                break;
+            case CjwNewsletterSubscription::STATUS_CONFIRMED:
+                return 'confirmed';
+                break;
+            case CjwNewsletterSubscription::STATUS_APPROVED:
+                return 'approved';
+                break;
+            case CjwNewsletterSubscription::STATUS_BOUNCED_HARD:
+                return 'bounced';
+                break;
+            case CjwNewsletterSubscription::STATUS_REMOVED_SELF:
+                return 'removed';
+                break;
+            case CjwNewsletterSubscription::STATUS_BLACKLISTED:
+                return 'blacklisted';
+                break;
+            default:
+                return "";
+                break;
         }
     }
 }
