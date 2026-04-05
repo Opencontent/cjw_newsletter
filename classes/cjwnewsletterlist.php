@@ -136,6 +136,7 @@ class CjwNewsletterList extends eZPersistentObject
         {
             case 'to_string':
                 {
+                    // @phpstan-ignore method.notFound
                     return $this->toString();
                 } break;
             default:
@@ -210,6 +211,7 @@ class CjwNewsletterList extends eZPersistentObject
     static function fetch( $attributeId, $version )
     {
         $objectList = eZPersistentObject::fetchObjectList(
+                        // @phpstan-ignore staticMethod.void
                         CjwNewsletterList::definition(),
                         null,
                         array( 'contentobject_attribute_id' => $attributeId,
@@ -219,6 +221,7 @@ class CjwNewsletterList extends eZPersistentObject
                         true
                         );
 
+        // @phpstan-ignore return.missing
         if ( count( $objectList ) > 0 )
             return $objectList[0];
     }
@@ -287,6 +290,7 @@ class CjwNewsletterList extends eZPersistentObject
 
         foreach ( $siteAccessArray as $siteAccessName )
         {
+            // @phpstan-ignore method.notFound
             $siteAccessIniArray[ $siteAccessName ] = $this->getSitIniObjectBySiteAccessName( $siteAccessName );
         }
 

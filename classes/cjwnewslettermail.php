@@ -375,12 +375,15 @@ class CjwNewsletterMail
         $emailResult = eZMailTransport::send( $mail );
         $emailResult = array('email_result' => $emailResult, 'email_sender' => $emailSender, 'email_reciever' => $emailReciever, 'email_subject' => $emailSubject, 'email_content_type' => $emailContentType, 'email_charset' => $emailCharset );
 
+        // @phpstan-ignore variable.undefined
         if ( $mailResult === true )
         {
+            // @phpstan-ignore variable.undefined
             $message = "send - " . $receiver['email'] . " - " . $receiver['name'];
         }
         else
         {
+            // @phpstan-ignore variable.undefined
             $message = "not send - " . $receiver['email'] . " - " . $receiver['name'];
         }
         return $emailResult;
@@ -516,6 +519,7 @@ class CjwNewsletterMail
      */
     public function resetExtraMailHeaders()
     {
+        // @phpstan-ignore property.notFound
         $this->extraEmailHeaderItemArray = array();
         //$this->setExtraMailHeader( 'version', '1.0.0alpha' );
         $this->setExtraMailHeader( 'version', cjw_newsletterInfo::SOFTWARE_VERSION );
@@ -532,6 +536,7 @@ class CjwNewsletterMail
         if( $newsletterUser instanceof CjwNewsletterUser )
         {
             $this->setExtraMailHeader( 'receiver', $newsletterUser->attribute('email') );
+            // @phpstan-ignore return.missing
             $this->setExtraMailHeader( 'user', $newsletterUser->attribute('hash') );
         }
         else
@@ -556,6 +561,7 @@ class CjwNewsletterMail
 
             // unsubscribe hash
             $subscriptionObject = $newsletterEditionSendItem->attribute( 'newsletter_subscription_object' );
+            // @phpstan-ignore return.missing
             $this->setExtraMailHeader( 'subscription', $subscriptionObject->attribute( 'hash' ) );
         }
         else

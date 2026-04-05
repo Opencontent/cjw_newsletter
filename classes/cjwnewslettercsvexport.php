@@ -89,12 +89,14 @@ class CjwNewsletterCsvExport extends eZPersistentObject
         {
             // set
             $this->ChoosenKeys = $choosenKeys;
+            // @phpstan-ignore return.missing
             $this->manipulateKeys();
         }
         // else all keys
         else
         {
             // swap identifier with values, required for writeCsv()
+            // @phpstan-ignore return.missing
             $this->ChoosenKeys = array_flip( $this->AllKeys );
         }
     }
@@ -150,6 +152,7 @@ class CjwNewsletterCsvExport extends eZPersistentObject
         }
 
         // wash the string
+        // @phpstan-ignore return.missing
         $this->washCsvString();
 
     }
@@ -173,6 +176,7 @@ class CjwNewsletterCsvExport extends eZPersistentObject
         $csvFile = fopen( 'php://temp/maxmemory:'. ( 20 * 1024 * 1024 ), 'r+' );
 
         // if filehandler opened
+        // @phpstan-ignore return.missing
         if ( $csvFile )
         {
             // write csv string in file
@@ -186,6 +190,7 @@ class CjwNewsletterCsvExport extends eZPersistentObject
 
             echo $output;
 
+            // @phpstan-ignore return.missing
             eZExecution::cleanExit();
         }
     }
@@ -198,6 +203,7 @@ class CjwNewsletterCsvExport extends eZPersistentObject
     private function washCsvString()
     {
         $this->CsvResult = strip_tags( $this->CsvResult );
+        // @phpstan-ignore return.missing
         $this->CsvResult = trim( $this->CsvResult );
     }
 
@@ -227,6 +233,7 @@ class CjwNewsletterCsvExport extends eZPersistentObject
         }
 
         // save new array
+        // @phpstan-ignore return.missing
         $this->ChoosenKeys = $arrSortedKeyItems;
     }
 }

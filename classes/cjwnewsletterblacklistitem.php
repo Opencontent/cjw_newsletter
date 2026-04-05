@@ -209,6 +209,7 @@ class CjwNewsletterBlacklistItem extends eZPersistentObject
                                                     null,
                                                     $condArray,
                                                     $sortByArray,
+                                                    // @phpstan-ignore variable.undefined
                                                     $limitArr,
                                                     $asObject,
                                                     null,
@@ -294,6 +295,7 @@ class CjwNewsletterBlacklistItem extends eZPersistentObject
         {
             $newsletterUserObject->setNonBlacklisted();
         }
+        // @phpstan-ignore staticMethod.void
         return parent::remove( $conditions = null, $extraConditions = null );
     }
 

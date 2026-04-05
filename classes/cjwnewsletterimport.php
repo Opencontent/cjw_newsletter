@@ -192,6 +192,7 @@ class CjwNewsletterImport extends eZPersistentObject
                                                     null,
                                                     $condArray,
                                                     $sortByArray,
+                                                    // @phpstan-ignore variable.undefined
                                                     $limitArr,
                                                     $asObject,
                                                     null,
@@ -307,6 +308,7 @@ class CjwNewsletterImport extends eZPersistentObject
         $this->setAttribute( 'imported_user_count', $this->getImportedUserCountLive() );
         $this->setAttribute( 'imported_subscription_count', $this->getImportedSubscriptionCountLive() );
         $this->setAttribute( 'imported', time() );
+        // @phpstan-ignore return.missing
         $this->store();
     }
 

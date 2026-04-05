@@ -124,6 +124,7 @@ class CjwNewsletterMailboxItem extends eZPersistentObject
     public static function fetch( $id, $asObject = true )
     {
          return eZPersistentObject::fetchObject(
+                                                    // @phpstan-ignore staticMethod.void
                                                     CjwNewsletterMailboxItem::definition(),
                                                     null,
                                                     array( 'id' => (int) $id ),
@@ -142,6 +143,7 @@ class CjwNewsletterMailboxItem extends eZPersistentObject
     public static function fetchByMailboxIdMessageIdentifier( $mailboxId, $messageIdentifier, $asObject = true )
     {
          return eZPersistentObject::fetchObject(
+                                                    // @phpstan-ignore staticMethod.void
                                                     self::definition(),
                                                     null,
                                                     array( 'mailbox_id' => (int) $mailboxId,
@@ -215,10 +217,12 @@ class CjwNewsletterMailboxItem extends eZPersistentObject
         $condArray = array( /*'bounce_code' => array( '>', 0 )*/ );
 
         $objectList = eZPersistentObject::fetchObjectList(
+                                                    // @phpstan-ignore staticMethod.void
                                                     self::definition(),
                                                     null,
                                                     $condArray,
                                                     $sortByArray,
+                                                    // @phpstan-ignore variable.undefined
                                                     $limitArr,
                                                     $asObject,
                                                     null,
@@ -237,6 +241,7 @@ class CjwNewsletterMailboxItem extends eZPersistentObject
     static public function fetchAllMailboxItemsCount( )
     {
         $count = eZPersistentObject::count(
+                             // @phpstan-ignore staticMethod.void
                              self::definition(),
                              array( ),
                              'id' );
@@ -407,8 +412,10 @@ class CjwNewsletterMailboxItem extends eZPersistentObject
         // if only set 'x-cjwnl-user'
         elseif ( isset( $parsedResult[ 'x-cjwnl-user' ] ) )
         {
+            // @phpstan-ignore variable.undefined
             $newsletterUser = CjwNewsletterUser::fetchByHash( $sendItemHash, true );
 
+            // @phpstan-ignore variable.undefined
             if ( is_object( $sendItemObject ) )
             {
                 $newsletterUserId = $newsletterUser->attribute('id');

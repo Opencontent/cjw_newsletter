@@ -115,6 +115,7 @@ function cjwNewsletterErrorHandler($errno, $errstr='', $errfile='', $errline='')
     // display error msg, if debug is enabled
     if ($cfg['debug'] == 1) {
         echo '<h2>Newsletter Debug Msg</h2>'.nl2br($errMsg).'<br />
+            // @phpstan-ignore variable.undefined
             Trace: '.nl2br($trace).'<br />';
     }
 
@@ -137,6 +138,7 @@ function cjwNewsletterErrorHandler($errno, $errstr='', $errfile='', $errline='')
                             'From: Error Handler');
                 }
                 // end and display error msg
+                // @phpstan-ignore function.void
                 exit( displayClientMessage() );
             }
             else

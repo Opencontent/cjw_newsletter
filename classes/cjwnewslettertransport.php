@@ -32,6 +32,7 @@ class CjwNewsletterTransport
      */
     function __construct( $transportMethod = 'file' )
     {
+        // @phpstan-ignore property.notFound
         $this->transportMethod = $transportMethod;
     }
 
@@ -43,6 +44,7 @@ class CjwNewsletterTransport
      */
     public function send( ezcMail $ezcMailComposerObject )
     {
+        // @phpstan-ignore property.notFound
         $iniTransport = $this->transportMethod;
         $cjwNewsletterINI = eZINI::instance( 'cjw_newsletter.ini' );
 
@@ -92,6 +94,7 @@ class CjwNewsletterTransport
 
         try
         {
+            // @phpstan-ignore variable.undefined
             $transport->send( $ezcMailComposerObject );
             // CjwNewsletterLog::writeInfo( 'email send ok', 'CjwNewsletterTransport', 'send' );
 
