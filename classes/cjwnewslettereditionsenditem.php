@@ -168,11 +168,9 @@ class CjwNewsletterEditionSendItem extends eZPersistentObject
                                                     'status_new' => $value,
                                                     'nl_user' => $this->attribute( 'newsletter_user_id' ) ) );
 
-                // @phpstan-ignore staticMethod.void
                 return eZPersistentObject::setAttribute( $attr, $value );
             } break;
             default:
-                // @phpstan-ignore staticMethod.void
                 return eZPersistentObject::setAttribute( $attr, $value );
         }
     }
@@ -231,12 +229,10 @@ class CjwNewsletterEditionSendItem extends eZPersistentObject
         }
 
         $objectList = eZPersistentObject::fetchObjectList(
-                                                    // @phpstan-ignore staticMethod.void
                                                     self::definition(),
                                                     null,
                                                     array( 'newsletter_user_id' => (int) $newsletterUserId ),
                                                     null,
-                                                    // @phpstan-ignore variable.undefined
                                                     $limitArr,
                                                     $asObject,
                                                     null,
@@ -265,13 +261,11 @@ class CjwNewsletterEditionSendItem extends eZPersistentObject
         }
 
         $objectList = eZPersistentObject::fetchObjectList(
-                                                    // @phpstan-ignore staticMethod.void
                                                     self::definition(),
                                                     null,
                                                     array( 'newsletter_user_id' => (int) $newsletterUserId,
                                                            'status' => (int) $status ),
                                                     null,
-                                                    // @phpstan-ignore variable.undefined
                                                     $limitArr,
                                                     $asObject,
                                                     null,
@@ -316,7 +310,6 @@ class CjwNewsletterEditionSendItem extends eZPersistentObject
     static function fetchBySendIdAndNewsletterUserIdAndOutputFormatId( $editionSendId, $newsletterUserId, $outputFormatId, $asObject = true )
     {
         $objectList = eZPersistentObject::fetchObjectList(
-                                                    // @phpstan-ignore staticMethod.void
                                                     CjwNewsletterEditionSendItem::definition(),
                                                     null,
                                                     array(  'edition_send_id' => (int) $editionSendId,
@@ -349,7 +342,6 @@ class CjwNewsletterEditionSendItem extends eZPersistentObject
     public static function fetchBounceCountByEditionSendId( $editionSendId )
     {
          $count = eZPersistentObject::count(
-                             // @phpstan-ignore staticMethod.void
                              self::definition(),
                              array( 'edition_send_id' => (int) $editionSendId,
                                     'bounced' => array( '>', 0 ) ),
@@ -413,7 +405,6 @@ class CjwNewsletterEditionSendItem extends eZPersistentObject
         }
 
         $objectList = eZPersistentObject::fetchObjectList(
-                                                    // @phpstan-ignore staticMethod.void
                                                     CjwNewsletterEditionSendItem::definition(),
                                                     null,
                                                     $condArray,
@@ -499,7 +490,6 @@ class CjwNewsletterEditionSendItem extends eZPersistentObject
     public static function fetchByHash( $hashCode, $asObject )
     {
          return eZPersistentObject::fetchObject(
-                                                    // @phpstan-ignore staticMethod.void
                                                     CjwNewsletterEditionSendItem::definition(),
                                                     null,
                                                     array( 'hash' => $hashCode ),

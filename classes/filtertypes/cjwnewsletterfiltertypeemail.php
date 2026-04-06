@@ -20,7 +20,6 @@ class CjwNewsletterFilterTypeEmail extends CjwNewsletterFilterType
 {
     function __construct()
     {
-        // @phpstan-ignore method.notFound
         $this->CjwNewsletterFilterType( 'cjwnl_email',
                                         ezpI18n::tr( 'cjw_newsletter/filtertypes', 'Email', 'Filtertype name' ),
                                         array( /*'serialize_supported' => true*/ ) );

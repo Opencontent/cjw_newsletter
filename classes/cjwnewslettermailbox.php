@@ -240,7 +240,6 @@ class CjwNewsletterMailbox extends eZPersistentObject
     {
         // fetch mails which has a empty progressed_field ( unparsed mails )
         $objectList = eZPersistentObject::fetchObjectList(
-                                                            // @phpstan-ignore staticMethod.void
                                                             CjwNewsletterMailboxItem::definition(),
                                                             null,
                                                             array( 'processed' => 0 ),
@@ -359,9 +358,7 @@ class CjwNewsletterMailbox extends eZPersistentObject
                                                 'CjwNewsletterMailbox::connect',
                                                 'mailbox',
                                                 'connect-failed',
-                                                 // @phpstan-ignore variable.undefined
                                                  array( 'error-code' => $e->getMessage() ) );
-                    // @phpstan-ignore variable.undefined
                     return $e->getMessage();
 
             }
@@ -436,10 +433,8 @@ class CjwNewsletterMailbox extends eZPersistentObject
      */
     public function disconnect()
     {
-        // @phpstan-ignore return.missing
         if( is_object( $this->TransportObject ) )
         {
-            // @phpstan-ignore return.missing
             $this->TransportObject->disconnect();
         }
     }
@@ -500,10 +495,8 @@ class CjwNewsletterMailbox extends eZPersistentObject
 
             // only fetch messages from server which are not in the db
             // use message_identifier for check
-            // @phpstan-ignore variable.undefined
             $existingMessageIdentifierArray = $this->extractAllExistingIdentifiers( $uniqueIdentifierArray );
 
-            // @phpstan-ignore variable.undefined
             foreach ( $messageIdArray as $messageId => $messageSize )
             {
                 if( isset( $uniqueIdentifierArray[ $messageId ] ) )
@@ -632,7 +625,6 @@ class CjwNewsletterMailbox extends eZPersistentObject
     {
         if ( is_object( $object ) )
         {
-            // @phpstan-ignore return.missing
             $this->TransportObject = $object;
         }
         else

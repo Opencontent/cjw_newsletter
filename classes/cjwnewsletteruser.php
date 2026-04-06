@@ -422,7 +422,6 @@ class CjwNewsletterUser extends eZPersistentObject
                                                 'modifier' => eZUser::currentUserID() )
                                           );
                 }
-                // @phpstan-ignore staticMethod.void
                 return eZPersistentObject::setAttribute( $attr, $value );
             } break;
             case 'status':
@@ -491,12 +490,10 @@ class CjwNewsletterUser extends eZPersistentObject
                                                 'modifier' => eZUser::currentUserID() )
                                           );
                 }
-                // @phpstan-ignore staticMethod.void
                 return eZPersistentObject::setAttribute( $attr, $value );
 
             } break;
             default:
-                // @phpstan-ignore staticMethod.void
                 return eZPersistentObject::setAttribute( $attr, $value );
         }
 
@@ -623,7 +620,6 @@ class CjwNewsletterUser extends eZPersistentObject
         // TODO Namen extrahieren
         $emailReceiverName = '';
 
-        // @phpstan-ignore variable.undefined
         $emailSubject = $subject;
         $emailBody['text'] = $templateResult;
 
@@ -760,7 +756,6 @@ class CjwNewsletterUser extends eZPersistentObject
      */
     static function fetchByHash( $hash, $asObject = true )
     {
-        // @phpstan-ignore staticMethod.void
         return eZPersistentObject::fetchObject( CjwNewsletterUser::definition(),
                                                 null,
                                                 array( 'hash' => $hash ),
@@ -777,7 +772,6 @@ class CjwNewsletterUser extends eZPersistentObject
     {
         $db = eZDB::instance();
         $objectList = eZPersistentObject::fetchObjectList(
-                        // @phpstan-ignore staticMethod.void
                         CjwNewsletterUser::definition(),
                         null,
                         array( 'email' => $db->escapeString( $email ) ),
@@ -830,7 +824,6 @@ class CjwNewsletterUser extends eZPersistentObject
 
             $db = eZDB::instance();
             $objectList = eZPersistentObject::fetchObjectList(
-                            // @phpstan-ignore staticMethod.void
                             CjwNewsletterUser::definition(),
                             null,
                             array( 'ez_user_id' => $db->escapeString( $ezUserId ) ),
@@ -860,7 +853,6 @@ class CjwNewsletterUser extends eZPersistentObject
     {
         $db = eZDB::instance();
         $objectList = eZPersistentObject::fetchObjectList(
-                        // @phpstan-ignore staticMethod.void
                         CjwNewsletterUser::definition(),
                         null,
                         array( 'remote_id' => $db->escapeString( $remoteId ) ),
@@ -910,7 +902,6 @@ class CjwNewsletterUser extends eZPersistentObject
      */
     static function fetch( $id, $asObject = true )
     {
-        // @phpstan-ignore staticMethod.void
         $object = eZPersistentObject::fetchObject( CjwNewsletterUser::definition(),
                                                    null,
                                                    array( 'id' => (int) $id ),
@@ -954,7 +945,6 @@ class CjwNewsletterUser extends eZPersistentObject
             $limitArr = array( 'limit' => $limit, 'offset' => $offset );
         }
         $objectList = eZPersistentObject::fetchObjectList(
-                                                    // @phpstan-ignore staticMethod.void
                                                     self::definition(),
                                                     null,
                                                     array( ),
@@ -1018,7 +1008,6 @@ class CjwNewsletterUser extends eZPersistentObject
         }
 
         $objectList = eZPersistentObject::fetchObjectList(
-                                                    // @phpstan-ignore staticMethod.void
                                                     self::definition(),
                                                     null,
                                                     array( 'status' => (int) $status ),
@@ -1052,7 +1041,6 @@ class CjwNewsletterUser extends eZPersistentObject
         }
 
         $objectList = eZPersistentObject::fetchObjectList(
-                                                    // @phpstan-ignore staticMethod.void
                                                     self::definition(),
                                                     null,
                                                     array( 'import_id' => (int) $importId ),
@@ -1075,7 +1063,6 @@ class CjwNewsletterUser extends eZPersistentObject
     static function fetchUserListByImportIdCount( $importId )
     {
         $count = eZPersistentObject::count(
-                     // @phpstan-ignore staticMethod.void
                      self::definition(),
                      array( 'import_id' => (int) $importId ),
                      'id' );
@@ -1090,7 +1077,6 @@ class CjwNewsletterUser extends eZPersistentObject
     static function fetchUserListByImportIdAndStatusCount( $importId, $status )
     {
         $count = eZPersistentObject::count(
-                     // @phpstan-ignore staticMethod.void
                      self::definition(),
                      array( 'import_id' => (int) $importId,
                             'status'    => (int) $status ),
@@ -1413,7 +1399,6 @@ class CjwNewsletterUser extends eZPersistentObject
                 $this->setAllNewsletterUserRelatedItemsToStatus( self::STATUS_BOUNCED_SOFT );
             }
         }
-        // @phpstan-ignore return.missing
         $this->store();
     }
 
@@ -1435,13 +1420,11 @@ class CjwNewsletterUser extends eZPersistentObject
         if( $byAdmin === true )
         {
             $this->setAttribute( 'status', self::STATUS_REMOVED_ADMIN );
-            // @phpstan-ignore return.missing
             $this->setAllNewsletterUserRelatedItemsToStatus( self::STATUS_REMOVED_ADMIN );
         }
         else
         {
             $this->setAttribute( 'status', self::STATUS_REMOVED_SELF );
-            // @phpstan-ignore return.missing
             $this->setAllNewsletterUserRelatedItemsToStatus( self::STATUS_REMOVED_SELF );
         }
     }
@@ -1476,13 +1459,11 @@ class CjwNewsletterUser extends eZPersistentObject
                 break;
         }
 
-        // @phpstan-ignore return.missing
         if ( $updateSubcriptions === true )
         {
 
             // update active subscriptions
             $activeSubscriptionList = CjwNewsletterSubscription::fetchListNotRemovedOrBlacklistedByNewsletterUserId( $newsletterUserId, true );
-            // @phpstan-ignore return.missing
             foreach ( $activeSubscriptionList as $subscription )
             {
                 if( $subscription->attribute( 'status') == $status )
@@ -1664,7 +1645,6 @@ class CjwNewsletterUser extends eZPersistentObject
         $custom_tables = null;
         $custom_conds = null;
 
-        // @phpstan-ignore staticMethod.void
         $def = self::definition();
 
         $fields = $def["fields"];
@@ -1839,7 +1819,6 @@ class CjwNewsletterUser extends eZPersistentObject
         $custom_tables = null;
         $custom_conds = null;
 
-        // @phpstan-ignore staticMethod.void
         $def = self::definition();
 
         $fields = $def["fields"];

@@ -861,7 +861,6 @@ class CjwNewsletterSubscription extends eZPersistentObject
      */
     static function fetchByListIdAndNewsletterUserId( $listContentObjectId, $newsletterUserId, $asObject = true )
     {
-        // @phpstan-ignore staticMethod.void
         $objectList = eZPersistentObject::fetchObjectList( self::definition(),
                                                     null,
                                                     array( 'list_contentobject_id' => $listContentObjectId,
@@ -923,7 +922,6 @@ class CjwNewsletterSubscription extends eZPersistentObject
         }
 
         $objectList = eZPersistentObject::fetchObjectList(
-                                                    // @phpstan-ignore staticMethod.void
                                                     self::definition(),
                                                     null,
                                                     $condArr,
@@ -962,7 +960,6 @@ class CjwNewsletterSubscription extends eZPersistentObject
         }
 
         $count = eZPersistentObject::count(
-                     // @phpstan-ignore staticMethod.void
                      self::definition(),
                      $condArr,
                      'id' );
@@ -989,7 +986,6 @@ class CjwNewsletterSubscription extends eZPersistentObject
         }
 
         $objectList = eZPersistentObject::fetchObjectList(
-                                                    // @phpstan-ignore staticMethod.void
                                                     self::definition(),
                                                     null,
                                                     array( 'import_id' => (int) $importId ),
@@ -1013,7 +1009,6 @@ class CjwNewsletterSubscription extends eZPersistentObject
     static function fetchSubscriptionListByImportIdCount( $importId )
     {
         $count = eZPersistentObject::count(
-                     // @phpstan-ignore staticMethod.void
                      self::definition(),
                      array( 'import_id' => (int) $importId ),
                      'id' );
@@ -1030,7 +1025,6 @@ class CjwNewsletterSubscription extends eZPersistentObject
     static function fetchSubscriptionListByImportIdAndStatusCount( $importId, $status )
     {
         $count = eZPersistentObject::count(
-                     // @phpstan-ignore staticMethod.void
                      self::definition(),
                      array( 'import_id' => (int) $importId,
                             'status'    => (int) $status ),
@@ -1059,7 +1053,6 @@ class CjwNewsletterSubscription extends eZPersistentObject
         }
 
         $objectList = eZPersistentObject::fetchObjectList(
-                                                    // @phpstan-ignore staticMethod.void
                                                     self::definition(),
                                                     null,
                                                     array( 'import_id' => (int) $importId,
@@ -1085,7 +1078,6 @@ class CjwNewsletterSubscription extends eZPersistentObject
     static function fetchSubscriptionListByNewsletterUserId( $newsletterUserId, $asObject = true )
     {
         $objectList = eZPersistentObject::fetchObjectList(
-                        // @phpstan-ignore staticMethod.void
                         self::definition(),
                         null,
                         array( 'newsletter_user_id' => (int) $newsletterUserId ),
@@ -1106,7 +1098,6 @@ class CjwNewsletterSubscription extends eZPersistentObject
     static function fetchListNotRemovedOrBlacklistedByNewsletterUserId( $newsletterUserId, $asObject = true )
     {
         $objectList = eZPersistentObject::fetchObjectList(
-                        // @phpstan-ignore staticMethod.void
                         self::definition(),
                         null,
                         array( 'newsletter_user_id' => (int) $newsletterUserId,
@@ -1198,7 +1189,6 @@ class CjwNewsletterSubscription extends eZPersistentObject
      */
     static function fetchByHash( $hash, $asObject = true )
     {
-        // @phpstan-ignore staticMethod.void
         return eZPersistentObject::fetchObject( self::definition(),
                                                 null,
                                                 array( 'hash' => $hash ),
@@ -1232,7 +1222,6 @@ class CjwNewsletterSubscription extends eZPersistentObject
     static function fetch( $id )
     {
         $object = eZPersistentObject::fetchObject(
-                            // @phpstan-ignore staticMethod.void
                             self::definition(),
                             null,
                             array( 'id' => $id ),
@@ -1288,7 +1277,6 @@ class CjwNewsletterSubscription extends eZPersistentObject
                                                 'modifier' => eZUser::currentUserID() )
                                           );
 
-        // @phpstan-ignore variable.undefined
         foreach( $currentNewsletterSubscriptionObjects as $subscription )
         {
             $subscription->remove();

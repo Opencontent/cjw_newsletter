@@ -231,11 +231,9 @@ class CjwNewsletterEditionSend extends eZPersistentObject
                 {
                     $this->setAttribute('mailqueue_process_aborted', time() );
                 }
-                // @phpstan-ignore staticMethod.void
                 return eZPersistentObject::setAttribute( $attr, $value );
             } break;
             default:
-                // @phpstan-ignore staticMethod.void
                 return eZPersistentObject::setAttribute( $attr, $value );
         }
 
@@ -284,7 +282,6 @@ class CjwNewsletterEditionSend extends eZPersistentObject
     static function fetchByEditionContentObjectIdVersion( $editionContentobjectId, $editionContentOjbectVersion, $asObject = true  )
     {
         $objectList = eZPersistentObject::fetchObjectList(
-                        // @phpstan-ignore staticMethod.void
                         CjwNewsletterEditionSend::definition(),
                         null,
                         array( 'edition_contentobject_id' => $editionContentobjectId,
@@ -307,7 +304,6 @@ class CjwNewsletterEditionSend extends eZPersistentObject
     static function fetchByHash( $editionSendHash, $asObject = true )
     {
         $objectList = eZPersistentObject::fetchObjectList(
-                        // @phpstan-ignore staticMethod.void
                         CjwNewsletterEditionSend::definition(),
                         null,
                         array( 'hash' => $editionSendHash ),
@@ -316,7 +312,6 @@ class CjwNewsletterEditionSend extends eZPersistentObject
                         $asObject
                         );
 
-        // @phpstan-ignore return.missing
         if ( count( $objectList ) > 0 )
             return $objectList[0];
     }
@@ -331,7 +326,6 @@ class CjwNewsletterEditionSend extends eZPersistentObject
     static function fetchByEditionContentObjectId( $editionContentobjectId, $asObject = true )
     {
         $objectList = eZPersistentObject::fetchObjectList(
-                        // @phpstan-ignore staticMethod.void
                         CjwNewsletterEditionSend::definition(),
                         null,
                         array( 'edition_contentobject_id' => $editionContentobjectId ),
@@ -355,7 +349,6 @@ class CjwNewsletterEditionSend extends eZPersistentObject
     static function fetchByEditionContentObjectIdAndStatus( $editionContentobjectId, $sendStatusArray, $asObject = true  )
     {
         $objectList = eZPersistentObject::fetchObjectList(
-                        // @phpstan-ignore staticMethod.void
                         CjwNewsletterEditionSend::definition(),
                         null,
                         array( 'edition_contentobject_id' => $editionContentobjectId,
@@ -380,7 +373,6 @@ class CjwNewsletterEditionSend extends eZPersistentObject
     static function fetchByEditionContentObjectIdVersionAndStatus( $editionContentobjectId, $editionContentOjbectVersion, $sendStatusArray, $asObject = true  )
     {
         $objectList = eZPersistentObject::fetchObjectList(
-                        // @phpstan-ignore staticMethod.void
                         CjwNewsletterEditionSend::definition(),
                         null,
                         array( 'edition_contentobject_id' => $editionContentobjectId,
@@ -404,7 +396,6 @@ class CjwNewsletterEditionSend extends eZPersistentObject
     public static function fetchEditionSendListByStatus( array $sendStatusArray, $asObject = true )
     {
          $objectList = eZPersistentObject::fetchObjectList(
-                        // @phpstan-ignore staticMethod.void
                         CjwNewsletterEditionSend::definition(),
                         null,
                         array( 'status' =>array( $sendStatusArray ) ), // array( array( s1, s3 ) ) =>  status in ( s1, s2 ) )
@@ -554,7 +545,6 @@ class CjwNewsletterEditionSend extends eZPersistentObject
     static function fetch( $id )
     {
         $object = eZPersistentObject::fetchObject(
-                            // @phpstan-ignore staticMethod.void
                             CjwNewsletterEditionSend::definition(),
                             null,
                             array( 'id' => $id ),

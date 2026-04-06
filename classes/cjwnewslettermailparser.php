@@ -208,7 +208,6 @@ class CjwNewsletterMailParser
                 }
             }
 
-            // @phpstan-ignore variable.undefined
             return array( 'error_code' => $errorCode, 'final_recipient' => $recipient );
         }
         elseif ( isset( $arrayPartsOfezcMailObject[ 0 ] ) && is_object( $arrayPartsOfezcMailObject[ 0 ] ) && $arrayPartsOfezcMailObject[ 0 ] instanceof ezcMailText )

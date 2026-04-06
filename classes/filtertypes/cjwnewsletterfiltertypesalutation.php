@@ -22,7 +22,6 @@ class CjwNewsletterFilterTypeSalutation extends CjwNewsletterFilterType
     {
         $salutationNameArray = CjwNewsletterUser::getAvailableSalutationNameArrayFromIni();
 
-    // @phpstan-ignore method.notFound
         $this->CjwNewsletterFilterType( 'cjwnl_salutation',
                                         ezpI18n::tr( 'cjw_newsletter/filtertypes', 'Salutation', 'Filtertype name' ),
                                         array( /*'serialize_supported' => true*/ ) );

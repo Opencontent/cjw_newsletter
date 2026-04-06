@@ -30,7 +30,6 @@ class CjwNewsletterListVirtual extends CjwNewsletterList
     */
     static function definition()
     {
-        // @phpstan-ignore staticMethod.void
         $listDefinition = parent::definition();
         // set Classname for Virtual List
         $listDefinition['class_name'] = 'CjwNewsletterListVirtual';
@@ -126,7 +125,6 @@ class CjwNewsletterListVirtual extends CjwNewsletterList
             $parentListNode = eZContentObjectTreeNode::fetch( $parentListNodeId );
         }
 
-        // @phpstan-ignore variable.undefined
         if ( is_object( $parentListNode )
             && $parentListNode->attribute( 'class_identifier' ) == 'cjw_newsletter_list' )
         {
@@ -197,7 +195,6 @@ class CjwNewsletterListVirtual extends CjwNewsletterList
     static function fetch( $attributeId, $version )
     {
         $objectList = eZPersistentObject::fetchObjectList(
-            // @phpstan-ignore staticMethod.void
             self::definition(),
             null,
             array( 'contentobject_attribute_id' => $attributeId,
@@ -208,7 +205,6 @@ class CjwNewsletterListVirtual extends CjwNewsletterList
             true
         );
 
-        // @phpstan-ignore return.missing
         if ( count( $objectList ) > 0 )
             return $objectList[0];
     }

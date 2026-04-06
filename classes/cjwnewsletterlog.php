@@ -114,7 +114,6 @@ class CjwNewsletterLog extends ezcLog
      */
     public static function getInstance( $isCliMode = false )
     {
-        // @phpstan-ignore return.missing
         try {
             if ( is_null( self::$instance ) )
             {

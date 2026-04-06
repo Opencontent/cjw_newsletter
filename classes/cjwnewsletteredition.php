@@ -103,7 +103,6 @@ class CjwNewsletterEdition extends eZPersistentObject
     static function fetch( $attributeId, $version )
     {
         $objectList = eZPersistentObject::fetchObjectList(
-                        // @phpstan-ignore staticMethod.void
                         CjwNewsletterEdition::definition(),
                         null,
                         array( 'contentobject_attribute_id' => $attributeId,
@@ -113,7 +112,6 @@ class CjwNewsletterEdition extends eZPersistentObject
                         true
                         );
 
-        // @phpstan-ignore return.missing
         if ( count( $objectList ) > 0 )
             return $objectList[0];
     }
@@ -461,7 +459,6 @@ class CjwNewsletterEdition extends eZPersistentObject
             $outputFormat->appendChild( $mainTemplateNode );
         }
 
-        // @phpstan-ignore variable.undefined
         $root->setAttribute( 'locale', $textArray['locale'] );
         //$root->setAttribute( 'site_url', $textArray['site_url'] );
         //$root->setAttribute( 'ez_root', $textArray['ez_root'] );

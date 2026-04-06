@@ -40,7 +40,6 @@ class CjwNewsletterFilterType
     protected $Attributes;
 
 
-    /** @phpstan-ignore constructor.unusedParameter */
     protected function __construct( $filterTypeIdentifier, $name, $properties = array() )
     {
 
@@ -156,11 +155,9 @@ class CjwNewsletterFilterType
                     return $this->ValuesAvailable;
                     break;
                 case 'db_query_parts':
-                    // @phpstan-ignore property.notFound
                     return $this->DbFields;
                     break;
                 case 'db_tables':
-                    // @phpstan-ignore property.notFound
                     return $this->DbTables;
                     break;
                 case 'db_conditions':
@@ -285,13 +282,11 @@ class CjwNewsletterFilterType
                 if ( $valueSearchString !== false )
                     $value = str_replace( '__value__', $value, $valueSearchString );
 
-                // @phpstan-ignore variable.undefined
                 $condAndArray[] =  array( $field => array( $sqlOperation, $value ) );
             }
             else
             {
 
-                // @phpstan-ignore variable.undefined
                 switch ( $sqlOperation )
                 {
                     case '=':

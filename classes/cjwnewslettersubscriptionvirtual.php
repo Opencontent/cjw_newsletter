@@ -26,7 +26,6 @@ class CjwNewsletterSubscriptionVirtual extends CjwNewsletterSubscription
      */
     static function definition( )
     {
-        // @phpstan-ignore staticMethod.void
         $listDefinition = parent::definition( );
         // set Classname for Virtual List
         $listDefinition['class_name'] = 'CjwNewsletterSubscriptionVirtual';
@@ -272,7 +271,6 @@ AND EXISTS (
         $custom_tables = null;
         $custom_conds = null;
 
-        // @phpstan-ignore staticMethod.void
         $def = self::definition( );
 
         $fields = $def["fields"];
@@ -383,7 +381,6 @@ AND EXISTS (
                         $andConditionArray[] = self::filterText( $conditionArr );
                     }
 
-                    // @phpstan-ignore variable.undefined
                     if ( count( $andConditionArray ) >  0 )
                     {
                         $andText = '( '. implode( ' AND ', $andConditionArray ) . ' )';
@@ -489,7 +486,6 @@ AND EXISTS (
      */
     static function createFromUserRow( $newsletterUserRow, $virtualListContentObjectId, $asObject )
     {
-        // @phpstan-ignore staticMethod.notFound
         $subcriptionVirtualObjectList = self::createFromUserRows( array(
                                                                   $newsletterUserRow
                                                                   ),
@@ -512,7 +508,6 @@ AND EXISTS (
      */
     static function createFromUserRowArray( $newsletterUserRows, $virtualListContentObjectId, $asObject )
     {
-        // @phpstan-ignore staticMethod.void
         $def = self::definition( );
         $className = $def['class_name'];
 
