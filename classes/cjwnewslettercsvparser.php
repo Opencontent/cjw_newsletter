@@ -53,22 +53,27 @@ class CjwNewsletterCsvParser
         {
             $firstRowTmp = fgetcsv( $fp, 1000, $delimiter );
             $c++;
+            $firstRow = array();
+            foreach ( $csvFieldMappingArray as $key => $item )
+            {
+                $firstRow[array_search($item, $firstRowTmp)] = $item;  
+            }
         }
 
         // Loop file
         while ( ( $row = fgetcsv( $fp, 1000, $delimiter )) !== FALSE )
         {
-            for ( $i=0; $i < count( $firstRow ); $i++ )
+            foreach ( $firstRow as $key => $item )
             {
-                if ( array_key_exists( $i, $row ) )
+                if ( array_key_exists( $key, $row ) )
                 {
                     if ( $utf8Encode !== FALSE )
                     {
-                        $rowArray[ $c ] [ $firstRow[$i] ] = utf8_encode( $row[ $i ] );
+                        $rowArray[ $c ] [ $item ] = utf8_encode( $row[ $key ] );
                     }
                     else
                     {
-                        $rowArray[ $c ] [ $firstRow[$i] ] = $row[ $i ];
+                        $rowArray[ $c ] [ $item ] = $row[ $key ];
                     }
                 }
             }

@@ -126,7 +126,7 @@
                 <input class="button" type="submit" name="importcsv" value="{'Import CSV'|i18n( 'cjw_newsletter/subscription_list' )}" title="{'Import contact from CSV file.'|i18n( 'cjw_newsletter/newsletter_list_subscription' )}" />
             </form>
 
-            <form name="CsvExport" method="post" action={$uri_csv_export|ezurl} style="display:inline">
+            <form name="CsvExport" method="post" action={if $status}{concat($uri_csv_export,'/(status)/',$status)|ezurl}{else}{$uri_csv_export|ezurl}{/if} style="display:inline">
                 <input class="button" type="submit" name="importcsv" value="{'Export CSV'|i18n( 'cjw_newsletter/subscription_list' )}" title="{'Export to CSV file.'|i18n( 'cjw_newsletter/newsletter_list_subscription' )}" />
             </form>
 

@@ -164,6 +164,7 @@ $ViewList['subscription_list_csvexport'] = array(
     'script' => 'subscription_list_csvexport.php',
     'functions' => array( 'subscription_list_csvexport' ),
     'default_navigation_part' => 'eznewsletternavigationpart',
+    'unordered_params' => array( 'status' => "Status" ),
     'params' => array( 'NodeId' ) );
 
 
